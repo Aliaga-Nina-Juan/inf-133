@@ -6,7 +6,7 @@ def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler):
         httpd = server_class(server_address,handler_class)
         print('Iniciando servidor web en http://localhost:8000/')
         httpd.serve_forever()
-    except KeyboardInterupt:
+    except KeyboardInterrupt:
         print('Apagando servidor web')
         httpd.socket.close()
 
