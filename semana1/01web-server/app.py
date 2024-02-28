@@ -10,5 +10,9 @@ def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler):
         print('Apagando servidor web')
         httpd.socket.close()
 
-    if __name__ == "__main__":
+    if __name__== "__main__":
         run()
+
+    from http.server import HTTPServer, SimpleHTTPRequestHandler
+
+
