@@ -14,14 +14,15 @@ class User(UserMixin, db.Model):
     last_name = db.Column(db.String(50), nullable=False)
     username = db.Column(db.String(100), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
-    
+    role = db.Column(db.String(50), nullable=False, default="user")
 
     # Inicializa la clase `User`
-    def __init__(self, first_name, last_name, username, password):
+    def __init__(self, first_name, last_name, username, password, role="user"):
         self.first_name = first_name
         self.last_name = last_name
         self.username = username
         self.set_password(password)
+        self.role = role
 
     # Genera un hash seguro de la contraseña
     def set_password(self, password):
@@ -55,3 +56,6 @@ class User(UserMixin, db.Model):
     @staticmethod
     def get_user_by_username(username):
         return User.query.filter_by(username=username).first()
+
+    def has_role(self, role):
+        return self.role == role
